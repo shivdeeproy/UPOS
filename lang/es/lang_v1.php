@@ -562,7 +562,7 @@ return [
     'all' => 'Todos',
     'date_time_format_help' => "Ingrese el formato de fecha y hora en <a target='_blank' href='http://php.net/manual/en/function.date.php'>Formato datetime PHP</a>. Si se aplicará un formato de fecha y hora en blanco",
     'detailed' => 'Detallado',
-    'grouped' => 'Agrupados',
+    'grouped' => 'Agrupado (Por Fecha)',
     'disable_recurring_invoice' => 'Deshabilitar factura recurrente',
     'is_recurring' => 'Es recurrente',
     'recurring_invoice_help' => 'Si se suscribe, esta factura se generará automáticamente a intervalos regulares. <br> Puede desactivar esta función en <code> Configuración> Configuración de negocio> Modules </code>',
@@ -1337,5 +1337,12 @@ return [
     'zatca_qr_help' => 'Para el país de Arabia Saudita',
     'customer_irrespective_of_sell' => 'Ver clientes independientemente de su venta',
     'img_url_help_text' => 'O URL de la imagen',
-    'delivery_person' => 'Persona de entrega'
+    'delivery_person' => 'Persona de entrega',
+    'enable_service_staff_pin' => 'Habilitar el PIN del personal de servicio',
+    'staff_pin' => 'PIN del personal',
+    'tooltip_is_enable_service_staff_pin' => 'Si está habilitado, durante las ventas/punto de venta, cuando se seleccione a este usuario como personal de servicio, se debe introducir el PIN; un PIN incorrecto no permitirá la selección de este usuario como personal de servicio.',
+    'kitchen_order' => 'Orden de cocina',
+    'kitchen_order_tooltip' => 'El pedido se enviará a la cocina solo si esta opción está marcada',
+    'disable_quotation' => 'Desactivar Cotización',
+    'disable_card' => 'Desactivar Tarjeta',
 ];

@@ -17,30 +17,34 @@
 
 	<tbody>
 		<tr>
-			@if(empty($receipt_details->letter_head))
 				<td class="text-center" style="line-height: 15px !important; padding-bottom: 10px !important">
-					@if(!empty($receipt_details->header_text))
-						{!! $receipt_details->header_text !!}
+					@if(empty($receipt_details->letter_head))
+						@if(!empty($receipt_details->header_text))
+							{!! $receipt_details->header_text !!}
+						@endif
+
+						@php
+							$sub_headings = implode('<br/>', array_filter([$receipt_details->sub_heading_line1, $receipt_details->sub_heading_line2, $receipt_details->sub_heading_line3, $receipt_details->sub_heading_line4, $receipt_details->sub_heading_line5]));
+						@endphp
+
+						@if(!empty($sub_headings))
+							<span>{!! $sub_headings !!}</span>
+						@endif
 					@endif
-
-					@php
-						$sub_headings = implode('<br/>', array_filter([$receipt_details->sub_heading_line1, $receipt_details->sub_heading_line2, $receipt_details->sub_heading_line3, $receipt_details->sub_heading_line4, $receipt_details->sub_heading_line5]));
-					@endphp
-
-					@if(!empty($sub_headings))
-						<span>{!! $sub_headings !!}</span>
-					@endif
-
 					@if(!empty($receipt_details->invoice_heading))
-						<p  style="font-weight: bold; font-size: 35px !important">{!! $receipt_details->invoice_heading !!}</p>
+						{{-- <p  style="font-weight: bold; font-size: 35px !important">{!! $receipt_details->invoice_heading !!}</p> --}}
+						<p style="font-weight: bold; font-size: 35px !important; line-height: 1;">{!! $receipt_details->invoice_heading !!}</p>
+
 					@endif
 				</td>
-			@else
+			</tr>
+			@if(!empty($receipt_details->letter_head))
+			<tr>
 				<td>
 					<img style="width: 100%;margin-bottom: 10px;" src="{{$receipt_details->letter_head}}">
 				</td>
+			</tr>
 			@endif
-		</tr>
 
 		<tr>
 			<td>

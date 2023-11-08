@@ -563,7 +563,7 @@ return [
     'all' => 'Të gjithë',
     'date_time_format_help' => "Shkruani formatin e datës dhe orës në <a target='_blank' href='http://php.net/manual/en/function.date.php'>Formati datetime PHP</a>. Nëse formati bosh i datës së afarizmit do të aplikohet",
     'detailed' => 'Detajuar',
-    'grouped' => 'Grupuar',
+    'grouped' => 'Grupuar (Sipas Dates)',
     'disable_recurring_invoice' => 'Çaktivizo faturën e përsëritur',
     'is_recurring' => 'A është e përsëritur',
     'recurring_invoice_help' => 'Nëse abonuar kjo faturë do të gjenerohet automatikisht në intervale të rregullta. <br> Mund ta çaktivizoni këtë funksion në <code> Settings > Business Settings > Modules </code>',
@@ -1325,5 +1325,12 @@ return [
     'add_sell_payment' => 'Shto pagesën e shitjes',
     'edit_sell_payment' => 'Ndrysho pagesën e shitjes',
     'delete_sell_payment' => 'Fshi pagesën e shitjes',
-    'delivery_person' => 'Personi i dorëzimit'
+    'delivery_person' => 'Personi i dorëzimit',
+    'enable_service_staff_pin' => 'Aktivizo PIN-in e stafit të shërbimit',
+    'staff_pin' => 'PIN-i i Stafit',
+    'tooltip_is_enable_service_staff_pin' => 'Nëse është e aktivizuar, gjatë shitjeve/POS kur ky përdorues zgjidhet si staf i shërbimit, duhet të vendoset PIN-i, PIN-i i pasaktë nuk do të lejojë zgjedhjen e këtij përdoruesi si staf i shërbimit.',
+    'kitchen_order' => 'Porosia e kuzhinës',
+    'kitchen_order_tooltip' => 'Porosia do të dërgohet në kuzhinë vetëm nëse ky opsion është zgjedhur',
+    'disable_quotation' => 'Çaktivizo Kuotën',
+    'disable_card' => 'Çaktivizo Kartën',
 ];

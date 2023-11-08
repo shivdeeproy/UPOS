@@ -567,7 +567,7 @@ return [
     'date_time_format_help' => "Tarih ve saat biçimini <a target='_blank' href='http://php.net/manual/en/function.date.php'> PHP tarih / saat biçiminde </a> girin. uygulanacak",
     'all' => 'Herşey',
     'detailed' => 'Detaylı',
-    'grouped' => 'Gruplanmış',
+    'grouped' => 'Gruplandı (Tarihe Göre)',
     'disable_recurring_invoice' => 'Düzenli Faturayı Devre Dışı Bırak',
     'is_recurring' => 'Tekrar Ediyor',
     'recurring_invoice_help' => "Abone olursanız, bu fatura düzenli aralıklarla otomatik olarak oluşturulur. <br> Bu özelliği <code> Ayarlar> İşletme Ayarları> Modules </code> 'da devre dışı bırakabilirsiniz",
@@ -1342,5 +1342,12 @@ return [
     'zatca_qr_help' => 'Suudi Arabistan ülkesi için',
     'customer_irrespective_of_sell' => 'Satışlarından bağımsız olarak müşterileri görüntüleyin',
     'img_url_help_text' => "Veya resmin URL'si",
-    'delivery_person' => 'Teslimat Personeli'
+    'delivery_person' => 'Teslimat Personeli',
+    'enable_service_staff_pin' => 'Hizmet personeli PIN kodunu etkinleştir',
+    'staff_pin' => 'Personel PIN',
+    'tooltip_is_enable_service_staff_pin' => 'Etkinse, satış/POS sırasında bu kullanıcı hizmet personeli olarak seçildiğinde PIN girilmesi gerekir, yanlış PIN bu kullanıcının hizmet personeli olarak seçilmesine izin vermez.',
+    'kitchen_order' => 'Mutfak Siparişi',
+    'kitchen_order_tooltip' => 'Bu seçenek işaretlendiğinde sipariş sadece mutfağa gönderilir',
+    'disable_quotation' => 'Teklifi Devre Dışı Bırak',
+    'disable_card' => 'Kartı Devre Dışı Bırak',
 ];

@@ -570,7 +570,7 @@ return [
     'date_time_format_help' => "Nhập định dạng ngày và thời gian trong <a target='_blank' href='http://php.net/manual/en/function.date.php'> PHP datetime format </a>. Nếu định dạng ngày giờ làm việc trống sẽ được áp dụng",
     'all' => 'Tất cả các',
     'detailed' => 'Chi tiết',
-    'grouped' => 'Nhóm',
+    'grouped' => 'Nhóm (Theo Ngày)',
     'disable_recurring_invoice' => 'Vô hiệu hóa đơn định kỳ',
     'is_recurring' => 'Đang định kỳ',
     'recurring_invoice_help' => 'Nếu đăng ký hóa đơn này sẽ được tạo tự động theo định kỳ. <br> Bạn có thể tắt tính năng này trong <code> Cài đặt> Cài đặt doanh nghiệp> Mô-đun </ code>',
@@ -1351,5 +1351,12 @@ return [
     'zatca_qr_help' => 'Đối với đất nước Ả Rập Xê-út',
     'customer_irrespective_of_sell' => 'Xem khách hàng bất kể họ bán hàng',
     'img_url_help_text' => 'Hoặc URL của hình ảnh',
-    'delivery_person' => 'Nhân viên giao hàng'
+    'delivery_person' => 'Nhân viên giao hàng',
+    'enable_service_staff_pin' => 'Bật mã PIN nhân viên dịch vụ',
+    'staff_pin' => 'Mã PIN Nhân viên',
+    'tooltip_is_enable_service_staff_pin' => 'Nếu được bật, trong quá trình bán hàng/POS khi người dùng này được chọn làm nhân viên dịch vụ, cần phải nhập mã PIN, mã PIN không đúng sẽ không cho phép chọn người dùng này làm nhân viên dịch vụ.',
+    'kitchen_order' => 'Đơn hàng bếp',
+    'kitchen_order_tooltip' => 'Đơn hàng sẽ chỉ được gửi đến bếp nếu tùy chọn này được chọn',
+    'disable_quotation' => 'Tắt Báo giá',
+    'disable_card' => 'Tắt Thẻ',
 ];

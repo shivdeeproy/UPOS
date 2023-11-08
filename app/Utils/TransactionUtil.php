@@ -140,6 +140,7 @@ class TransactionUtil extends Util
             'additional_expense_key_2' => ! empty($input['additional_expense_key_2']) ? $input['additional_expense_key_2'] : null,
             'additional_expense_key_3' => ! empty($input['additional_expense_key_3']) ? $input['additional_expense_key_3'] : null,
             'additional_expense_key_4' => ! empty($input['additional_expense_key_4']) ? $input['additional_expense_key_4'] : null,
+            'is_kitchen_order' => ! empty($input['is_kitchen_order']) ? 1 : 0,
 
         ]);
 
@@ -257,6 +258,7 @@ class TransactionUtil extends Util
             'additional_expense_key_2' => ! empty($input['additional_expense_key_2']) ? $input['additional_expense_key_2'] : null,
             'additional_expense_key_3' => ! empty($input['additional_expense_key_3']) ? $input['additional_expense_key_3'] : null,
             'additional_expense_key_4' => ! empty($input['additional_expense_key_4']) ? $input['additional_expense_key_4'] : null,
+            'is_kitchen_order' => ! empty($input['is_kitchen_order']) ? 1 : 0,
         ];
 
         if (! empty($input['transaction_date'])) {
@@ -5613,11 +5615,19 @@ class TransactionUtil extends Util
             'end_date' => $end_date,
             'location_id' => $location_id,
         ];
-        $project_module_data = $moduleUtil->getModuleData('grossProfit', $module_parameters);
+        $grossProfitData = $moduleUtil->getModuleData('grossProfit', $module_parameters);
 
-        if (! empty($project_module_data['Project']['gross_profit'])) {
-            $gross_profit = $gross_profit + $project_module_data['Project']['gross_profit'];
-            $data['gross_profit_label'] = __('project::lang.project_invoice');
+        // if (! empty($project_module_data['Project']['gross_profit'])) {
+        //     $gross_profit = $gross_profit + $project_module_data['Project']['gross_profit'];
+        //     $data['gross_profit_label'] = __('project::lang.project_invoice');
+        // }
+
+        $data['gross_profit_label'] = [];
+        if(! empty($grossProfitData)){
+            foreach($grossProfitData as $value){
+                $data['gross_profit_label'][] = $value['label'];
+                $gross_profit = $gross_profit + $value['value'];
+            }
         }
 
         $data['gross_profit'] = $gross_profit;

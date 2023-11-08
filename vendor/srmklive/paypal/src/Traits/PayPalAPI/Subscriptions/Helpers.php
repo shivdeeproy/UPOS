@@ -29,14 +29,24 @@ trait Helpers
     protected $billing_plan;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $return_url;
+    protected $shipping_address;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $cancel_url;
+    protected $payment_preferences;
+
+    /**
+     * @var bool
+     */
+    protected $has_setup_fee = false;
+
+    /**
+     * @var array
+     */
+    protected $taxes;
 
     /**
      * Setup a subscription.
@@ -51,7 +61,7 @@ trait Helpers
      */
     public function setupSubscription(string $customer_name, string $customer_email, string $start_date = '')
     {
-        $start_date = isset($start_date) ? Carbon::parse($start_date)->toIso8601String() : Carbon::now()->toIso8601String();
+        $start_date = !empty($start_date) ? Carbon::parse($start_date)->toIso8601String() : Carbon::now()->toIso8601String();
 
         $body = [
             'plan_id'    => $this->billing_plan['id'],
@@ -65,11 +75,22 @@ trait Helpers
             ],
         ];
 
-        if ($this->return_url && $this->cancel_url) {
-            $body['application_context'] = [
-                'return_url' => $this->return_url,
-                'cancel_url' => $this->cancel_url,
+        if ($this->has_setup_fee) {
+            $body['plan'] = [
+                'payment_preferences' => $this->payment_preferences,
             ];
+        }
+
+        if (isset($this->shipping_address)) {
+            $body['subscriber']['shipping_address'] = $this->shipping_address;
+        }
+
+        if (isset($this->experience_context)) {
+            $body['application_context'] = $this->experience_context;
+        }
+
+        if (isset($this->taxes)) {
+            $body['taxes'] = $this->taxes;
         }
 
         $subscription = $this->createSubscription($body);
@@ -246,7 +267,7 @@ trait Helpers
     {
         $pricing_scheme = [
             'fixed_price' => [
-                'value'         => $price,
+                'value'         => bcdiv($price, 1, 2),
                 'currency_code' => $this->getCurrency(),
             ],
         ];
@@ -363,17 +384,87 @@ trait Helpers
     }
 
     /**
-     * Set return & cancel urls.
+     * Set custom failure threshold when adding a subscription.
      *
-     * @param string $return_url
-     * @param string $cancel_url
+     * @param int $threshold
      *
      * @return \Srmklive\PayPal\Services\PayPal
      */
-    public function setReturnAndCancelUrl(string $return_url, string $cancel_url): \Srmklive\PayPal\Services\PayPal
+    public function addPaymentFailureThreshold(int $threshold): \Srmklive\PayPal\Services\PayPal
     {
-        $this->return_url = $return_url;
-        $this->cancel_url = $cancel_url;
+        $this->payment_failure_threshold = $threshold;
+
+        return $this;
+    }
+
+    /**
+     * Add setup fee when adding a subscription.
+     *
+     * @param float $price
+     *
+     * @return \Srmklive\PayPal\Services\PayPal
+     */
+    public function addSetupFee(float $price): \Srmklive\PayPal\Services\PayPal
+    {
+        $this->has_setup_fee = true;
+        $this->payment_preferences = [
+            'auto_bill_outstanding'     => true,
+            'setup_fee'                 => [
+                'value'         => $price,
+                'currency_code' => $this->getCurrency(),
+            ],
+            'setup_fee_failure_action'  => 'CONTINUE',
+            'payment_failure_threshold' => $this->payment_failure_threshold,
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Add shipping address.
+     *
+     * @param string $full_name
+     * @param string $address_line_1
+     * @param string $address_line_2
+     * @param string $admin_area_2
+     * @param string $admin_area_1
+     * @param string $postal_code
+     * @param string $country_code
+     *
+     * @return \Srmklive\PayPal\Services\PayPal
+     */
+    public function addShippingAddress(string $full_name, string $address_line_1, string $address_line_2, string $admin_area_2, string $admin_area_1, string $postal_code, string $country_code): \Srmklive\PayPal\Services\PayPal
+    {
+        $this->shipping_address = [
+            'name' => [
+                'full_name' => $full_name,
+            ],
+            'address' => [
+                'address_line_1'  => $address_line_1,
+                'address_line_2'  => $address_line_2,
+                'admin_area_2'    => $admin_area_2,
+                'admin_area_1'    => $admin_area_1,
+                'postal_code'     => $postal_code,
+                'country_code'    => $country_code,
+            ],
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Add taxes when creating a subscription.
+     *
+     * @param float $percentage
+     *
+     * @return \Srmklive\PayPal\Services\PayPal
+     */
+    public function addTaxes(float $percentage)
+    {
+        $this->taxes = [
+            'percentage' => $percentage,
+            'inclusive'  => false,
+        ];
 
         return $this;
     }

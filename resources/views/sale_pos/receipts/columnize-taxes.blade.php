@@ -19,8 +19,8 @@
 
 	<tbody>
 		<tr>
-			@if(empty($receipt_details->letter_head))
 				<td class="text-center" style="line-height: 15px !important; padding-bottom: 10px !important">
+				@if(empty($receipt_details->letter_head))
 					@if(!empty($receipt_details->header_text))
 						{!! $receipt_details->header_text !!}
 					@endif
@@ -33,17 +33,21 @@
 						<span>{!! $sub_headings !!}</span>
 					@endif
 
+				@endif
+
 					@if(!empty($receipt_details->invoice_heading))
-						<p  style="font-weight: bold; font-size: 35px !important">{!! $receipt_details->invoice_heading !!}</p>
+						<p  style="font-weight: bold; font-size: 35px !important; line-height: 1;">{!! $receipt_details->invoice_heading !!}</p>
 					@endif
 				</td>
-			@else
-				<td>
-					<img style="width: 100%;margin-bottom: 10px;" src="{{$receipt_details->letter_head}}">
-				</td>
-			@endif
-		</tr>
-
+			</tr>
+			
+				@if(!empty($receipt_details->letter_head))
+				<tr>
+					<td>
+						<img style="width: 100%;margin-bottom: 10px;" src="{{$receipt_details->letter_head}}">
+					</td>
+				</tr>
+				@endif
 		<tr>
 			<td>
 

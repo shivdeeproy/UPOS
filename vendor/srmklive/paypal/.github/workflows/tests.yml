@@ -1,4 +1,4 @@
-name: TestsV3
+name: Laravel PayPal
 on: [push, pull_request]
 jobs:
   paypal:
@@ -7,10 +7,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.2', '7.3', '7.4', '8.0', '8.1']
+        php-versions: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        lfs: true
+    - name: Checkout LFS objects
+      run: git lfs checkout      
     - name: Setup PHP with Composer and extensions
       with:
         php-version: ${{ matrix.php-versions }}
@@ -28,11 +32,11 @@ jobs:
     - name: Install Composer dependencies
       env:
         PHP_VERSION: ${{ matrix.php-versions }}
-      run: composer install --no-progress --prefer-dist --optimize-autoloader $(if [ "$PHP_VERSION" == "8.0" || "$PHP_VERSION" == "8.1" ]; then echo "--ignore-platform-reqs"; fi;)
+      run: composer install --no-progress --prefer-dist --optimize-autoloader $(if [ "$PHP_VERSION" == "8.0" || "$PHP_VERSION" == "8.1" ]; then echo "--ignore-platform-reqs"; fi;)    
     - name: Run tests with code coverage
       env:
         PHP_VERSION: ${{ matrix.php-versions }}
-      run: vendor/bin/phpunit $(if [ "$PHP_VERSION" == "7.2" ]; then echo "-c phpunit.xml.dist.php72"; fi;) --coverage-clover build/logs/clover.xml
+      run: vendor/bin/phpunit $(if [ "$PHP_VERSION" == "7.2" ]; then echo "-c phpunit.xml.dist.php72"; fi;) $(if [ "$PHP_VERSION" == "7.3" ]; then echo "-c phpunit.xml.dist.php8"; fi;) $(if [ "$PHP_VERSION" == "7.4" ]; then echo "-c phpunit.xml.dist.php8"; fi;) $(if [ "$PHP_VERSION" == "8.0" ]; then echo "-c phpunit.xml.dist.php8"; fi;) --coverage-clover build/logs/clover.xml
     - name: Install PHP Coveralls library
       env:
         PHP_VERSION: ${{ matrix.php-versions }}

@@ -561,7 +561,7 @@ return [
     'all' => 'Allemaal',
     'date_time_format_help' => "Voer datum- en tijdnotatie in <a target='_blank' href='http://php.net/manual/en/function.date.php'>PHP datetime-indeling</a>. Als de datumnotatie voor lege bedrijfsdatums wordt toegepast",
     'detailed' => 'Gedetailleerd',
-    'grouped' => 'Gegroepeerde',
+    'grouped' => 'Gegroepeerd (Op Datum)',
     'disable_recurring_invoice' => 'Recurring Factuur uitschakelen',
     'is_recurring' => 'Is terugkerend',
     'recurring_invoice_help' => 'Indien ingeschreven, wordt deze factuur automatisch gegenereerd op regelmatige tijdstippen. <br> U kunt deze functie uitschakelen in <code> Instellingen > Bedrijfsinstellingen> Modules </code>',
@@ -1336,5 +1336,12 @@ return [
     'zatca_qr_help' => 'Voor het land van Saoedi-Arabië',
     'customer_irrespective_of_sell' => 'Bekijk klanten ongeacht hun verkoop',
     'img_url_help_text' => 'Of URL van de afbeelding',
-    'delivery_person' => 'Bezorger'
+    'delivery_person' => 'Bezorger',
+    'enable_service_staff_pin' => 'Schakel pincode voor medewerkers in',
+    'staff_pin' => 'Medewerkers Pincode',
+    'tooltip_is_enable_service_staff_pin' => 'Indien ingeschakeld, moet tijdens de verkoop/POS bij selectie van deze gebruiker als servicemedewerker een pincode worden ingevoerd. Een onjuiste pincode staat niet toe dat deze gebruiker wordt geselecteerd als servicemedewerker.',
+    'kitchen_order' => 'Keukenbestelling',
+    'kitchen_order_tooltip' => 'De bestelling wordt alleen naar de keuken gestuurd als deze optie is aangevinkt',
+    'disable_quotation' => 'Offerte uitschakelen',
+    'disable_card' => 'Kaart uitschakelen',
 ];

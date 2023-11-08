@@ -250,9 +250,12 @@ class ManageUserController extends Controller
                 'blood_group', 'contact_number', 'fb_link', 'twitter_link', 'social_media_1',
                 'social_media_2', 'permanent_address', 'current_address',
                 'guardian_name', 'custom_field_1', 'custom_field_2',
-                'custom_field_3', 'custom_field_4', 'id_proof_name', 'id_proof_number', 'cmmsn_percent', 'gender', 'max_sales_discount_percent', 'family_number', 'alt_number', ]);
+                'custom_field_3', 'custom_field_4', 'id_proof_name', 'id_proof_number', 'cmmsn_percent', 'gender', 'max_sales_discount_percent', 'family_number', 'alt_number', 'is_enable_service_staff_pin']);
 
             $user_data['status'] = ! empty($request->input('is_active')) ? 'active' : 'inactive';
+
+            $user_data['is_enable_service_staff_pin'] = ! empty($request->input('is_enable_service_staff_pin')) ? true : false;
+
             $business_id = request()->session()->get('user.business_id');
 
             if (! isset($user_data['selected_contacts'])) {
@@ -270,6 +273,12 @@ class ManageUserController extends Controller
             if (! empty($request->input('password'))) {
                 $user_data['password'] = $user_data['allow_login'] == 1 ? Hash::make($request->input('password')) : null;
             }
+
+
+            if (! empty($request->input('service_staff_pin'))) {
+                $user_data['service_staff_pin'] = $request->input('service_staff_pin');
+            }
+            
 
             //Sales commission percentage
             $user_data['cmmsn_percent'] = ! empty($user_data['cmmsn_percent']) ? $this->moduleUtil->num_uf($user_data['cmmsn_percent']) : 0;

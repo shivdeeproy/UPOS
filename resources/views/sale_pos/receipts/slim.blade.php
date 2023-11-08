@@ -10,8 +10,7 @@
     </head>
     <body>
         <div class="ticket">
-        	
-			@if(empty($receipt_details->letter_head))
+        	@if(empty($receipt_details->letter_head))
 				@if(!empty($receipt_details->logo))
 					<div class="text-box centered">
 						<img style="max-height: 100px; width: auto;" src="{{$receipt_details->logo}}" alt="Logo">
@@ -75,18 +74,18 @@
 					@if(!empty($receipt_details->tax_info2))
 						<b>{{ $receipt_details->tax_label2 }}</b> {{ $receipt_details->tax_info2 }}
 					@endif
-
+				@endif
 					<!-- Title of receipt -->
 					@if(!empty($receipt_details->invoice_heading))
 						<br/><span class="sub-headings">{!! $receipt_details->invoice_heading !!}</span>
 					@endif
 				</p>
 				</div>
-			@else
-				<div class="text-box">
-					<img style="width: 100%;margin-bottom: 10px;" src="{{$receipt_details->letter_head}}">
-				</div>
-			@endif
+				@if(!empty($receipt_details->letter_head))
+					<div class="text-box">
+						<img style="width: 100%;margin-bottom: 10px;" src="{{$receipt_details->letter_head}}">
+					</div>
+				@endif
 			<div class="border-top textbox-info">
 				<p class="f-left"><strong>{!! $receipt_details->invoice_no_prefix !!}</strong></p>
 				<p class="f-right">

@@ -2272,5 +2272,18 @@ class ProductUtil extends Util
             $vld->qty_available = $stock;
             $vld->save();
         }
+
+        //check if there are more such rows then delete it because one location can have only one variation_location_details
+        $vld_duplicate = VariationLocationDetails::join(
+            'business_locations as bl',
+            'bl.id',
+            '=',
+            'variation_location_details.location_id'
+        )
+                ->where('variation_location_details.location_id', $location_id)
+                ->where('variation_id', $variation_id)
+                ->where('bl.business_id', $business_id)
+                ->where('variation_location_details.id', '!=', $vld->id)
+                ->delete();
     }
 }

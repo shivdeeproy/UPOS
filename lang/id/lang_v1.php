@@ -556,7 +556,7 @@ return [
     'user_inactive' => 'Maaf, akun tidak aktif',
     'calculator' => 'Kalkulator',
     'detailed' => 'Terperinci',
-    'grouped' => 'Digrupkan',
+    'grouped' => 'Dikelompokkan (Menurut Tanggal)',
     'disable_recurring_invoice' => 'Nonaktifkan Faktur Berulang',
     'is_recurring' => 'Berulang',
     'recurring_invoice_help' => 'Jika berlangganan, faktur ini akan secara otomatis dihasilkan secara berkala. <br> Anda dapat menonaktifkan fitur ini di <code> Pengaturan > Pengaturan Bisnis > Modules </code>',
@@ -1340,5 +1340,12 @@ return [
     'zatca_qr_help' => 'Untuk negara Arab Saudi',
     'customer_irrespective_of_sell' => 'Lihat pelanggan terlepas dari penjualan mereka',
     'img_url_help_text' => 'Atau URL gambar',
-    'delivery_person' => 'Pengantar Pesanan'
+    'delivery_person' => 'Pengantar Pesanan',
+    'enable_service_staff_pin' => 'Aktifkan PIN staf layanan',
+    'staff_pin' => 'PIN Staf',
+    'tooltip_is_enable_service_staff_pin' => 'Jika diaktifkan, saat penjualan/POS ketika pengguna ini dipilih sebagai staf layanan, PIN harus dimasukkan, PIN yang salah tidak akan memungkinkan pemilihan pengguna ini sebagai staf layanan.',
+    'kitchen_order' => 'Pesanan Dapur',
+    'kitchen_order_tooltip' => 'Pesanan akan dikirim ke dapur hanya jika opsi ini dicentang',
+    'disable_quotation' => 'Nonaktifkan Penawaran',
+    'disable_card' => 'Nonaktifkan Kartu',
 ];

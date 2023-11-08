@@ -571,7 +571,7 @@ return [
     'date_time_format_help' => "د نیټی او وخت بڼه داخله کړئ په <a target='_blank' href='http://php.net/manual/en/function.date.php'>د PHP نیټي وخت بڼه</a>. که خالي وي، د سوداګریز نیټې وخت بڼه به پلي شي",
     'all' => 'ټول',
     'detailed' => 'تفصیل',
-    'grouped' => 'ډله شوی',
+    'grouped' => 'وګړل شوی (د تاریخ لخوا)',
     'disable_recurring_invoice' => 'د رسید بیاکتنه غیر فعالول',
     'is_recurring' => 'بیا کتل کیږي',
     'recurring_invoice_help' => 'که ګډون کړی شوی وي، نو دا رسید به په اتومات ډول د وقتي وقفو په واسطه تولید شي.<br>تاسو کولی شئ دا خاصیت غیر فعال کړئ په <code>Settings > Business Settings > Modules</code>',
@@ -1348,5 +1348,12 @@ return [
     'zatca_qr_help' => 'د سعودي عربستان لپاره',
     'customer_irrespective_of_sell' => 'پیرودونکي وګورئ پرته لدې چې د دوی پلور وي',
     'img_url_help_text' => 'یا د انځور URL',
-    'delivery_person' => 'دلیوری ګټ'
+    'delivery_person' => 'دلیوری ګټ',
+    'enable_service_staff_pin' => 'خدمت کارانو پین فعال کړئ',
+    'staff_pin' => 'کارکونو پین',
+    'tooltip_is_enable_service_staff_pin' => 'که فعال شوی، پخچې خرڅلاو/POS وخته دغه کارن د خدمت کارونو لپاره د پین داخل کولو په اړه نومې دي، ناسم د پین به داخلولو دغه کارن نه اجازه دي چې د خدمت کار په ګوند کاريږي.',
+    'kitchen_order' => 'آشپزخانه داخلول',
+    'kitchen_order_tooltip' => 'په دغه اختیار چی ستایش شوی په صرف د مطبخ ته زده کړی',
+    'disable_quotation' => 'غواړی غورځول',
+    'disable_card' => 'کارت غواړی غورځول',
 ];

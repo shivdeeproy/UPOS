@@ -407,13 +407,5 @@ class Transaction extends Model
         return $sales_orders;
     }
 
-    public function hms_booking_lines()
-    {
-        return $this->hasMany(\Modules\Hms\Entities\HmsBookingLine::class);
-    }
-
-    public function hms_booking_extras()
-    {
-        return $this->hasMany(\Modules\Hms\Entities\HmsBookingExtra::class);
-    }
+   
 }

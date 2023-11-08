@@ -6,6 +6,7 @@ use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler as HttpMockHandler;
 use GuzzleHttp\HandlerStack as HttpHandlerStack;
 use GuzzleHttp\Psr7\Response as HttpResponse;
+use GuzzleHttp\Psr7\Stream as HttpStream;
 use GuzzleHttp\Utils;
 use Psr\Http\Message\ResponseInterface;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -30,7 +31,7 @@ trait MockClientClasses
     private function mock_http_request($expectedResponse, $expectedEndpoint, $expectedParams, $expectedMethod = 'post')
     {
         $set_method_name = 'setMethods';
-        if (function_exists('onlyMethods')) {
+        if (strpos(phpversion(), '8.1') !== false || strpos(phpversion(), '8.2') !== false) {
             $set_method_name = 'onlyMethods';
         }
 
@@ -38,7 +39,7 @@ trait MockClientClasses
             ->getMock();
         $mockResponse->expects($this->exactly(1))
             ->method('getBody')
-            ->willReturn($expectedResponse);
+            ->willReturn(new HttpStream(fopen('data://text/plain,'.$expectedResponse, 'r')));
 
         $mockHttpClient = $this->getMockBuilder(HttpClient::class)
             ->{$set_method_name}([$expectedMethod])
@@ -51,25 +52,29 @@ trait MockClientClasses
         return $mockHttpClient;
     }
 
-    private function mock_client($expectedResponse, $expectedMethod, $token = false)
+    private function mock_client($expectedResponse, $expectedMethod, $token = false, $additionalMethod = null)
     {
         $set_method_name = 'setMethods';
-        if (function_exists('onlyMethods')) {
+        if (strpos(phpversion(), '8.1') !== false || strpos(phpversion(), '8.2') !== false) {
             $set_method_name = 'onlyMethods';
         }
 
         $methods = [$expectedMethod, 'setApiCredentials'];
-        if ($token) {
-            $methods[] = 'getAccessToken';
-        }
+        $methods[] = ($token) ? 'getAccessToken' : '';
+        $methods[] = isset($additionalMethod) ? $additionalMethod : '';
 
         $mockClient = $this->getMockBuilder(PayPalClient::class)
-            ->{$set_method_name}($methods)
+            ->{$set_method_name}(array_filter($methods))
             ->getMock();
 
         if ($token) {
             $mockClient->expects($this->exactly(1))
                 ->method('getAccessToken');
+        }
+
+        if (isset($additionalMethod)) {
+            $mockClient->expects($this->any())
+            ->method($additionalMethod);
         }
 
         $mockClient->expects($this->exactly(1))

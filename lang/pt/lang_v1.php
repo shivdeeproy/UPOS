@@ -571,7 +571,7 @@ return [
     'date_time_format_help' => "Enter date and time format in <a target='_blank' href='http://php.net/manual/en/function.date.php'>PHP datetime format</a>. If blank business date time format will be applied",
     'all' => 'All',
     'detailed' => 'Detalhado',
-    'grouped' => 'Agrupado',
+    'grouped' => 'Nhóm (Theo Ngày)',
     'disable_recurring_invoice' => 'Desativar fatura recorrente',
     'is_recurring' => 'É recorrente',
     'recurring_invoice_help' => 'Se você assinar esta lei será gerada automaticamente em intervalos regulares. Como você pode desativar esse recurso no <code> Configurações> Business> Módulos </code>',
@@ -1366,5 +1366,12 @@ return [
     'zatca_qr_help' => 'Para o país da Arábia Saudita',
     'customer_irrespective_of_sell' => 'Veja os clientes independentemente de suas vendas',
     'img_url_help_text' => 'Ou URL da imagem',
-    'delivery_person' => 'Entregador'
+    'delivery_person' => 'Entregador',
+    'enable_service_staff_pin' => 'Ativar o PIN do pessoal de serviço',
+    'staff_pin' => 'PIN do pessoal',
+    'tooltip_is_enable_service_staff_pin' => 'Se ativado, durante as vendas/PDVs, quando este usuário for selecionado como pessoal de serviço, é necessário inserir o PIN; um PIN incorreto não permitirá a seleção deste usuário como pessoal de serviço.',
+    'kitchen_order' => 'Pedido de cozinha',
+    'kitchen_order_tooltip' => 'O pedido será enviado para a cozinha apenas se esta opção estiver marcada',
+    'disable_quotation' => 'Desativar Orçamento',
+    'disable_card' => 'Desativar Cartão',
 ];

@@ -293,7 +293,7 @@ class SellPosController extends Controller
                 'invoice_schemes',
                 'default_invoice_schemes',
                 'invoice_layouts',
-                'users'
+                'users', 
             ));
     }
 
@@ -471,6 +471,10 @@ class SellPosController extends Controller
                 }
                 if ($this->transactionUtil->isModuleEnabled('service_staff')) {
                     $input['res_waiter_id'] = request()->get('res_waiter_id');
+                }
+
+                if ($this->transactionUtil->isModuleEnabled('kitchen')) {
+                    $input['is_kitchen_order'] = request()->get('is_kitchen_order');
                 }
 
                 //upload document
@@ -1224,6 +1228,10 @@ class SellPosController extends Controller
                 }
                 if ($this->transactionUtil->isModuleEnabled('service_staff')) {
                     $input['res_waiter_id'] = request()->get('res_waiter_id');
+                }
+
+                if ($this->transactionUtil->isModuleEnabled('kitchen')) {
+                    $input['is_kitchen_order'] = request()->get('is_kitchen_order');
                 }
 
                 //upload document

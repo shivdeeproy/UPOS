@@ -337,7 +337,7 @@ class SellingPriceGroupController extends Controller
                         //update price for base selling price, adjust default_sell_price, profit %
                         $variation->sell_price_inc_tax = $value[2];
                         $tax = $variation->product->product_tax()->get();
-                        $tax_percent = !empty($tax) ? $tax->first()->amount : 0;
+                        $tax_percent = !empty($tax) && !empty($tax->first()) ? $tax->first()->amount : 0;
                         $variation->default_sell_price = $this->commonUtil->calc_percentage_base($value[2], $tax_percent);
                         $variation->profit_percent = $this->commonUtil
                                         ->get_percent($variation->default_purchase_price, $variation->default_sell_price);

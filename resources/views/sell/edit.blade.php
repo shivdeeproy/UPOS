@@ -756,7 +756,6 @@
 	@can('sell.payments')
 		@component('components.widget', ['class' => 'box-solid', 'title' => __('purchase.add_payment')])
 		<div class="row">
-			<div class="payment_row" id="payment_rows_div">
 			@foreach($payment_lines as $payment_line)			
 				@if($payment_line['is_return'] == 1)
 					@php
@@ -769,10 +768,11 @@
 				@if(!empty($payment_line['id']))
         			{!! Form::hidden("payment[$loop->index][payment_id]", $payment_line['id']); !!}
         		@endif
-
-				@include('sale_pos.partials.payment_row_form', ['row_index' => $loop->index, 'show_date' => true, 'payment_line' => $payment_line, 'show_denomination' => true])
-			@endforeach
-			</div>
+				<div class="payment_row" id="payment_rows_div">
+					@include('sale_pos.partials.payment_row_form', ['row_index' => $loop->index, 'show_date' => true, 'payment_line' => $payment_line, 'show_denomination' => true])
+				</div>
+				@endforeach
+			
 
 			<div class="col-md-12">
         		<hr>

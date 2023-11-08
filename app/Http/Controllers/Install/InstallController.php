@@ -173,7 +173,7 @@ class InstallController extends Controller
             $this->outputLog = new BufferedOutput;
 
             $input = $request->only(['APP_NAME', 'APP_TITLE', 'DB_HOST', 'DB_PORT', 'DB_DATABASE', 'DB_USERNAME', 'DB_PASSWORD', 'ENVATO_PURCHASE_CODE',
-                'MAIL_MAILER',
+                'ENVATO_EMAIL', 'ENVATO_USERNAME', 'MAIL_MAILER',
                 'MAIL_FROM_ADDRESS', 'MAIL_FROM_NAME', 'MAIL_HOST', 'MAIL_PORT', 'MAIL_ENCRYPTION',
                 'MAIL_USERNAME', 'MAIL_PASSWORD', ]);
 
@@ -192,7 +192,11 @@ class InstallController extends Controller
                     ->with('error', $msg);
             }
 
-
+            //pos boot
+            $return = pos_boot($input['APP_URL'], __DIR__, $input['ENVATO_PURCHASE_CODE'], $input['ENVATO_EMAIL'], $input['ENVATO_USERNAME']);
+            if (! empty($return)) {
+                return $return;
+            }
 
             //Check for activation key
             if ($this->macActivationKeyChecker) {
@@ -318,6 +322,11 @@ class InstallController extends Controller
             ini_set('max_execution_time', 0);
             ini_set('memory_limit', '512M');
 
+            $input = $request->only(['ENVATO_PURCHASE_CODE', 'ENVATO_USERNAME', 'ENVATO_EMAIL']);
+            $return = pos_boot(config('app.url'), __DIR__, $input['ENVATO_PURCHASE_CODE'], $input['ENVATO_EMAIL'], $input['ENVATO_USERNAME'], 1);
+            if (! empty($return)) {
+                return $return;
+            }
 
             //Static version value is passed for 1.2 version.
             if ($version == 1.2) {
@@ -334,7 +343,7 @@ class InstallController extends Controller
                     DB::statement('SET default_storage_engine=INNODB;');
                     Artisan::call('migrate', ['--force' => true]);
                     Artisan::call('module:publish');
-                    //Artisan::call('passport:install', ['--force' => true]);
+                    Artisan::call('passport:install', ['--force' => true]);
 
                     $installUtil->setSystemInfo('db_version', $this->appVersion);
                 } else {
@@ -344,7 +353,7 @@ class InstallController extends Controller
                 abort(404);
             }
 
-            //DB::commit();
+            DB::commit();
 
             $output = ['success' => 1,
                 'msg' => 'Updated Succesfully to version '.$this->appVersion.' !!',

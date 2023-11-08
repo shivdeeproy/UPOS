@@ -571,7 +571,7 @@ return [
     'date_time_format_help' => "Enter date and time format in <a target='_blank' href='http://php.net/manual/en/function.date.php'>PHP datetime format</a>. If blank business date time format will be applied",
     'all' => 'All',
     'detailed' => 'Detailed',
-    'grouped' => 'Grouped',
+    'grouped' => 'Grouped (By Date)',
     'disable_recurring_invoice' => 'Disable Recurring Invoice',
     'is_recurring' => 'Is Recurring',
     'recurring_invoice_help' => 'If subscribed this invoice will be automatically generated at regular intervals.<br>You can disable this feature in <code>Settings > Business Settings > Modules</code>',
@@ -1530,5 +1530,12 @@ return [
     'product_prices_imported_successfully' => 'Product prices imported successfully',
     'price_group_price_type_tooltip' => 'If <b>Fixed</b> - the entered price will be used. If <b>Percentage</b> - price will be that much % of default selling price',
     'dropdown' => 'Dropdown',
-    'enter_dropdown_values' => 'Enter dropdown options, one option per line'
+    'enter_dropdown_values' => 'Enter dropdown options, one option per line',
+    'enable_service_staff_pin' => 'Enable service staff pin',
+    'staff_pin' => 'Staff Pin',
+    'tooltip_is_enable_service_staff_pin' => 'If enabled then during sales/pos when this user is selected as service staff pin needs to be entered, incorrect pin will not allow selection of this user as service staff.',
+    'kitchen_order' => 'Kitchen order',
+    'kitchen_order_tooltip' => 'Order will be sent to kitchen only if this option is checked',
+    'disable_quotation' => 'Disable Quotation',
+    'disable_card' => 'Disable Card',
 ];
